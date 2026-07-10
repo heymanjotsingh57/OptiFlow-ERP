@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>
+
+OptiFlow ERP Receipt
+
+</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+<style>
+
+body{
+
+background:#f5f5f5;
+
+font-family:Arial,sans-serif;
+
+}
+
+.receipt{
+
+max-width:900px;
+
+margin:40px auto;
+
+background:white;
+
+padding:40px;
+
+box-shadow:0 0 20px rgba(0,0,0,.15);
+
+}
+
+.company{
+
+text-align:center;
+
+margin-bottom:20px;
+
+}
+
+.company h1{
+
+color:#0d6efd;
+
+font-weight:bold;
+
+}
+
+.company h5{
+
+color:gray;
+
+}
+
+table{
+
+font-size:15px;
+
+}
+
+@media print{
+
+body{
+
+background:white;
+
+}
+
+.receipt{
+
+box-shadow:none;
+
+margin:0;
+
+}
+
+.no-print{
+
+display:none !important;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="receipt">
+
+<div class="company">
+
+<h1 class="display-5 fw-bold">
+
+👓 OptiFlow ERP
+
+</h1>
+
+<h5 class="text-secondary">
+
+Professional Optical Shop Management System
+
+</h5>
+
+<p class="mb-1">
+
+123 Main Road, Punjab, India
+
+</p>
+
+<p class="mb-0">
+
+☎ +91 9876543210
+
+</p>
+
+</div>
+
+<hr class="my-4">
+
+<hr>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<h4>
+
+Customer Details
+
+</h4>
+
+<table class="table table-bordered">
+
+<tr>
+
+<th width="35%">
+
+Invoice No
+
+</th>
+
+<td>
+
+INV-{{ customer.id|stringformat:"05d" }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+Patient ID
+
+</th>
+
+<td>
+
+{{ customer.patient_id }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+Customer Name
+
+</th>
+
+<td>
+
+{{ customer.customer_name }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+Phone
+
+</th>
+
+<td>
+
+{{ customer.phone_number }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+Age
+
+</th>
+
+<td>
+
+{{ customer.age }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+Gender
+
+</th>
+
+<td>
+
+{{ customer.gender }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+Address
+
+</th>
+
+<td>
+
+{{ customer.address }}
+
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="col-md-6">
+
+<h4>
+
+Doctor Details
+
+</h4>
+
+<table class="table table-bordered">
+
+<tr>
+
+<th width="35%">
+
+Doctor
+
+</th>
+
+<td>
+
+{{ customer.doctor_name }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+Delivery Date
+
+</th>
+
+<td>
+
+{{ customer.delivery_date }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+Status
+
+</th>
+
+<td>
+
+{{ customer.status }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+Created On
+
+</th>
+
+<td>
+
+{{ customer.created_at }}
+
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<hr>
+
+<h3 class="text-center">
+
+Eye Prescription
+
+</h3>
+
+<table class="table table-bordered text-center">
+
+<thead class="table-primary">
+
+<tr>
+
+<th>
+
+Eye
+
+</th>
+
+<th>
+
+SPH
+
+</th>
+
+<th>
+
+CYL
+
+</th>
+
+<th>
+
+AXIS
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+
+Right
+
+</td>
+
+<td>
+
+{{ customer.right_eye_sph }}
+
+</td>
+
+<td>
+
+{{ customer.right_eye_cyl }}
+
+</td>
+
+<td>
+
+{{ customer.right_eye_axis }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+Left
+
+</td>
+
+<td>
+
+{{ customer.left_eye_sph }}
+
+</td>
+
+<td>
+
+{{ customer.left_eye_cyl }}
+
+</td>
+
+<td>
+
+{{ customer.left_eye_axis }}
+
+</td>
+
+</tr>
+</tbody>
+
+</table>
+
+<hr>
+
+<h3 class="text-center">
+
+Frame & Lens Details
+
+</h3>
+
+<table class="table table-bordered">
+
+<thead class="table-dark">
+
+<tr>
+
+<th width="45%">
+
+Description
+
+</th>
+
+<th width="20%">
+
+Price
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+
+Frame
+
+<br>
+
+<small class="text-muted">
+
+{{ customer.frame_details }}
+
+</small>
+
+</td>
+
+<td>
+
+₹ {{ customer.frame_price }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+Lens
+
+<br>
+
+<small class="text-muted">
+
+{{ customer.lens_details }}
+
+</small>
+
+</td>
+
+<td>
+
+₹ {{ customer.lens_price }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>Subtotal</th>
+
+<td class="text-end">
+
+₹ {{ total|floatformat:2 }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>GST ({{ customer.gst }}%)</th>
+
+<td class="text-end">
+
+₹ {{ customer.gst|floatformat:2 }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>Discount</th>
+
+<td class="text-end text-danger">
+
+− ₹ {{ customer.discount|floatformat:2 }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>Advance Paid</th>
+
+<td class="text-end text-primary">
+
+₹ {{ customer.advance_paid|floatformat:2 }}
+
+</td>
+
+</tr>
+
+<tr class="table-primary">
+
+<th class="fs-5">
+
+Grand Total
+
+</th>
+
+<th class="text-end fs-5">
+
+₹ {{ grand_total|floatformat:2 }}
+
+</th>
+
+</tr>
+
+<tr class="table-success">
+
+<th class="fs-5">
+
+Balance Due
+
+</th>
+
+<th class="text-end fs-5">
+
+₹ {{ balance_due|floatformat:2 }}
+
+</th>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<hr>
+
+<h4>
+
+Remarks
+
+</h4>
+
+<div class="border rounded p-3 mb-4">
+
+{{ customer.remarks|default:"No Remarks" }}
+
+</div>
+
+<hr>
+
+<div class="row mt-5">
+
+    <div class="col-6 text-center">
+
+        _________________________
+
+        <br><br>
+
+        <strong>Customer Signature</strong>
+
+    </div>
+
+    <div class="col-6 text-center">
+
+        _________________________
+
+        <br><br>
+
+        <strong>Authorized Signature</strong>
+
+    </div>
+
+</div>
+
+<hr>
+
+<div class="text-center mt-4">
+
+    <h5>
+
+        🙏 Thank You For Visiting OptiFlow ERP
+
+    </h5>
+
+    <p class="text-muted">
+
+        We appreciate your trust in our optical services.
+
+        <br>
+
+        Please collect your glasses on the scheduled delivery date.
+
+    </p>
+
+</div>
+
+<hr>
+
+<div class="text-center mt-4 mb-3 no-print">
+
+    <button
+        class="btn btn-success btn-lg me-3"
+        onclick="window.print()">
+
+        🖨 Print Receipt
+
+    </button>
+
+    <a href="{% url 'home' %}"
+       class="btn btn-primary btn-lg">
+
+        🏠 Back to Dashboard
+
+    </a>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

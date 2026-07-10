@@ -1,0 +1,232 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+Add Customer | OptiFlow ERP
+{% endblock %}
+
+{% block content %}
+
+<div class="card shadow-lg border-0">
+
+    <div class="card-header bg-success text-white">
+
+        <h3 class="mb-0">
+            ➕ Add New Customer
+        </h3>
+
+    </div>
+
+    <div class="card-body">
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <h5 class="text-primary mb-3">
+                Customer Information
+            </h5>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+                    {{ form.customer_name.label_tag }}
+                    {{ form.customer_name }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    {{ form.phone_number.label_tag }}
+                    {{ form.phone_number }}
+                </div>
+
+                <div class="col-md-12 mb-3">
+                    {{ form.address.label_tag }}
+                    {{ form.address }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    {{ form.age.label_tag }}
+                    {{ form.age }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    {{ form.gender.label_tag }}
+                    {{ form.gender }}
+                </div>
+
+            </div>
+
+            <hr>
+
+            <h5 class="text-primary mb-3">
+                Doctor Information
+            </h5>
+
+            <div class="row">
+
+                <div class="col-md-12 mb-3">
+                    {{ form.doctor_name.label_tag }}
+                    {{ form.doctor_name }}
+                </div>
+
+            </div>
+
+            <hr>
+
+            <h5 class="text-primary mb-3">
+                Frame & Lens Details
+            </h5>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+                    {{ form.frame_details.label_tag }}
+                    {{ form.frame_details }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    {{ form.frame_price.label_tag }}
+                    {{ form.frame_price }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    {{ form.lens_details.label_tag }}
+                    {{ form.lens_details }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    {{ form.lens_price.label_tag }}
+                    {{ form.lens_price }}
+                </div>
+
+            </div>
+
+            <hr>
+
+            <h5 class="text-primary mb-3">
+                Right Eye Prescription
+            </h5>
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+                    {{ form.right_eye_sph.label_tag }}
+                    {{ form.right_eye_sph }}
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    {{ form.right_eye_cyl.label_tag }}
+                    {{ form.right_eye_cyl }}
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    {{ form.right_eye_axis.label_tag }}
+                    {{ form.right_eye_axis }}
+                </div>
+
+            </div>
+
+            <hr>
+
+            <h5 class="text-primary mb-3">
+                Left Eye Prescription
+            </h5>
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+                    {{ form.left_eye_sph.label_tag }}
+                    {{ form.left_eye_sph }}
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    {{ form.left_eye_cyl.label_tag }}
+                    {{ form.left_eye_cyl }}
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    {{ form.left_eye_axis.label_tag }}
+                    {{ form.left_eye_axis }}
+                </div>
+
+            </div>            <hr>
+
+            <h5 class="text-primary mb-3">
+                PD (Pupillary Distance)
+            </h5>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+                    {{ form.pd.label_tag }}
+                    {{ form.pd }}
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    {{ form.gst.label_tag }}
+                    {{ form.gst }}
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    {{ form.discount.label_tag }}
+                    {{ form.discount }}
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    {{ form.advance_paid.label_tag }}
+                    {{ form.advance_paid }}
+                </div>
+
+            </div>
+
+            <hr>
+
+            <h5 class="text-primary mb-3">
+                Order Information
+            </h5>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+                    {{ form.delivery_date.label_tag }}
+                    {{ form.delivery_date }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    {{ form.status.label_tag }}
+                    {{ form.status }}
+                </div>
+
+            </div>
+
+            <div class="mb-4">
+                {{ form.remarks.label_tag }}
+                {{ form.remarks }}
+            </div>
+
+            <div class="d-grid gap-2">
+
+                <button
+                    type="submit"
+                    class="btn btn-success btn-lg">
+
+                    💾 Save Customer
+
+                </button>
+
+                <a
+                    href="{% url 'home' %}"
+                    class="btn btn-secondary btn-lg">
+
+                    ⬅ Back to Dashboard
+
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

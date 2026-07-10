@@ -1,0 +1,227 @@
+{% extends "orders/customer_base.html" %}
+
+{% block title %}
+Track Order | OptiFlow ERP
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="text-center mb-4">
+
+                <h1 class="fw-bold display-5">
+
+                    🔍 Track Your Order
+
+                </h1>
+
+                <p class="text-muted">
+
+                    Enter your registered phone number to check your order status.
+
+                </p>
+
+            </div>
+
+            <div class="card shadow-lg border-0 rounded-4">
+
+                <div class="card-body p-4">
+
+                    <form method="GET">
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+
+                                Phone Number
+
+                            </label>
+
+                            <input
+                                type="text"
+                                name="phone"
+                                class="form-control form-control-lg"
+                                placeholder="Enter your phone number"
+                                value="{{ phone }}"
+                                required>
+
+                        </div>
+
+                        <div class="d-grid">
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary btn-lg">
+
+                                🔍 Track Order
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% if phone %}
+
+            {% for order in orders %}
+
+    {% if order.status == "READY" %}
+
+    <div class="alert alert-success shadow-lg border-0 rounded-4 p-4 mt-4 mb-4">
+
+        <h3 class="fw-bold mb-3">
+            🎉 Great News!
+        </h3>
+
+        <p class="fs-5 mb-2">
+            Hello <strong>{{ order.customer_name }}</strong>,
+        </p>
+
+        <p class="mb-2">
+            Your glasses are now
+            <strong>READY FOR COLLECTION.</strong>
+        </p>
+
+        <p class="mb-0">
+            📅 Please visit the store on or after
+            <strong>{{ order.delivery_date }}</strong>.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+{% endfor %}
+
+            <div class="mt-5">
+
+                <h3 class="fw-bold mb-4">
+
+                    Search Result
+
+                </h3>                {% if message %}
+
+                <div class="alert alert-warning shadow-sm border-0 rounded-3">
+
+                    <h5 class="mb-2">
+
+                        ⚠ No Order Found
+
+                    </h5>
+
+                    <p class="mb-0">
+
+                        {{ message }}
+
+                    </p>
+
+                </div>
+
+                {% elif orders %}
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-hover align-middle shadow-sm">
+
+                        <thead class="table-dark">
+
+                            <tr>
+
+                                <th>Patient ID</th>
+
+                                <th>Customer Name</th>
+
+                                <th>Status</th>
+
+                                <th>Delivery Date</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for order in orders %}
+
+                            <tr>
+
+                                <td>{{ order.patient_id }}</td>
+
+                                <td>{{ order.customer_name }}</td>
+
+                                <td>
+
+    {% if order.status == "RECEIVED" %}
+
+        <span class="badge bg-warning text-dark px-3 py-2">
+            📦 Received
+        </span>
+
+        <div class="small text-muted mt-2">
+            Your order has been received successfully.
+        </div>
+
+    {% elif order.status == "AT_LAB" %}
+
+        <span class="badge bg-info text-dark px-3 py-2">
+            🧪 At Lab
+        </span>
+
+        <div class="small text-muted mt-2">
+            Your glasses are currently being prepared.
+        </div>
+
+    {% elif order.status == "READY" %}
+
+        <span class="badge bg-success px-3 py-2">
+            ✅ Ready for Collection
+        </span>
+
+        <div class="text-success fw-bold mt-2">
+            🎉 Great News! Your glasses are ready for collection.
+        </div>
+
+    {% else %}
+
+        <span class="badge bg-secondary px-3 py-2">
+            {{ order.status }}
+        </span>
+
+    {% endif %}
+
+</td>
+
+                                <td>{{ order.delivery_date }}</td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
