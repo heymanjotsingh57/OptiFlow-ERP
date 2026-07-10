@@ -201,9 +201,11 @@ Built with Django & Bootstrap
 
 <script>
 
-const select = document.getElementById("themeSelect");
+const themeSelect = document.getElementById("themeSelect");
 
 function applyTheme(theme){
+
+    document.body.classList.remove("dark");
 
     if(theme==="dark"){
 
@@ -211,35 +213,45 @@ function applyTheme(theme){
 
     }
 
-    else if(theme==="light"){
+    else if(theme==="system"){
 
-        document.body.classList.remove("dark");
+        if(window.matchMedia("(prefers-color-scheme: dark)").matches){
 
-    }
+            document.body.classList.add("dark");
 
-    else{
-
-        const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-        document.body.classList.toggle("dark", dark);
+        }
 
     }
 
-    localStorage.setItem("theme", theme);
+    localStorage.setItem("theme",theme);
 
 }
 
-const saved = localStorage.getItem("theme") || "system";
+const savedTheme=localStorage.getItem("theme") || "light";
 
-select.value = saved;
+applyTheme(savedTheme);
 
-applyTheme(saved);
+if(themeSelect){
 
-select.onchange = function(){
+    themeSelect.value=savedTheme;
 
-    applyTheme(select.value);
+    themeSelect.addEventListener("change",function(){
 
-};
+        applyTheme(this.value);
+
+    });
+
+}
+
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{
+
+    if(localStorage.getItem("theme")==="system"){
+
+        applyTheme("system");
+
+    }
+
+});
 
 </script>
 

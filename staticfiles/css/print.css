@@ -1,0 +1,103 @@
+/* ==========================================
+   OptiFlow ERP - Print Styles
+========================================== */
+
+body{
+    background:#f8f9fa;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* Card Styling */
+
+.card{
+    border-radius:12px;
+}
+
+/* Buttons */
+
+.btn{
+    border-radius:8px;
+}
+
+/* =========================
+   PRINT
+========================= */
+
+@media print{
+
+body{
+
+background:white;
+
+}
+
+.btn{
+
+display:none !important;
+
+}
+
+a{
+
+display:none !important;
+
+}
+
+.navbar{
+
+display:none !important;
+
+}
+
+hr{
+
+border:1px solid black;
+
+}
+
+.card{
+
+border:none;
+
+box-shadow:none;
+
+}
+
+.container{
+
+width:100%;
+
+max-width:100%;
+
+margin:0;
+
+padding:0;
+
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+table th,
+table td{
+
+border:1px solid black !important;
+
+padding:8px;
+
+}
+
+.table-dark{
+
+background:#e9ecef !important;
+
+color:black !important;
+
+}
+
+}

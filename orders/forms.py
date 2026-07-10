@@ -1,4 +1,5 @@
 from django import forms
+import re
 from .models import Order
 
 
@@ -50,9 +51,14 @@ class OrderForm(forms.ModelForm):
             }),
 
             "phone_number": forms.TextInput(attrs={
-                "class": "form-control",
-                "placeholder": "Enter phone number"
-            }),
+    "class": "form-control",
+    "placeholder": "Enter 10 digit mobile number",
+    "maxlength": "10",
+    "inputmode": "numeric",
+    "pattern": "[6-9]{1}[0-9]{9}",
+    "title": "Enter a valid 10 digit Indian mobile number",
+    "autocomplete": "off"
+}),
 
             "address": forms.Textarea(attrs={
                 "class": "form-control",
@@ -144,3 +150,14 @@ class OrderForm(forms.ModelForm):
             }),
 
         }
+
+    def clean_phone_number(self):
+
+        phone = self.cleaned_data["phone_number"].strip()
+
+        if not re.fullmatch(r"[6-9]\d{9}", phone):
+            raise forms.ValidationError(
+                "Enter a valid 10 digit Indian mobile number."
+            )
+
+        return phone

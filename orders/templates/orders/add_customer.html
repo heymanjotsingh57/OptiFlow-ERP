@@ -6,15 +6,13 @@ Add Customer | OptiFlow ERP
 
 {% block content %}
 
-<div class="card shadow-lg border-0">
+<div class="card shadow">
 
     <div class="card-header bg-success text-white">
-
-        <h3 class="mb-0">
-            ➕ Add New Customer
-        </h3>
-
-    </div>
+    <h2 class="mb-0">
+        ➕ Add New Customer
+    </h2>
+</div>
 
     <div class="card-body">
 
@@ -22,9 +20,9 @@ Add Customer | OptiFlow ERP
 
             {% csrf_token %}
 
-            <h5 class="text-primary mb-3">
+            <h4 class="text-primary mb-3">
                 Customer Information
-            </h5>
+            </h4>
 
             <div class="row">
 
@@ -36,6 +34,32 @@ Add Customer | OptiFlow ERP
                 <div class="col-md-6 mb-3">
                     {{ form.phone_number.label_tag }}
                     {{ form.phone_number }}
+
+                    <small class="text-muted">
+    Enter a valid 10-digit Indian mobile number.
+</small>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const phone = document.querySelector('input[name="phone_number"]');
+
+    if(phone){
+
+        phone.addEventListener("input", function () {
+
+            this.value = this.value.replace(/\D/g, "");
+
+            if(this.value.length > 10){
+                this.value = this.value.slice(0,10);
+            }
+
+        });
+
+    }
+
+});
+</script>
                 </div>
 
                 <div class="col-md-12 mb-3">
@@ -57,24 +81,20 @@ Add Customer | OptiFlow ERP
 
             <hr>
 
-            <h5 class="text-primary mb-3">
+            <h4 class="text-primary mb-3">
                 Doctor Information
-            </h5>
+            </h4>
 
-            <div class="row">
-
-                <div class="col-md-12 mb-3">
-                    {{ form.doctor_name.label_tag }}
-                    {{ form.doctor_name }}
-                </div>
-
+            <div class="mb-3">
+                {{ form.doctor_name.label_tag }}
+                {{ form.doctor_name }}
             </div>
 
             <hr>
 
-            <h5 class="text-primary mb-3">
+            <h4 class="text-primary mb-3">
                 Frame & Lens Details
-            </h5>
+            </h4>
 
             <div class="row">
 
@@ -102,9 +122,9 @@ Add Customer | OptiFlow ERP
 
             <hr>
 
-            <h5 class="text-primary mb-3">
+            <h4 class="text-primary mb-3">
                 Right Eye Prescription
-            </h5>
+            </h4>
 
             <div class="row">
 
@@ -127,9 +147,9 @@ Add Customer | OptiFlow ERP
 
             <hr>
 
-            <h5 class="text-primary mb-3">
+            <h4 class="text-primary mb-3">
                 Left Eye Prescription
-            </h5>
+            </h4>
 
             <div class="row">
 
@@ -148,11 +168,11 @@ Add Customer | OptiFlow ERP
                     {{ form.left_eye_axis }}
                 </div>
 
-            </div>            <hr>
+            </div>
 
-            <h5 class="text-primary mb-3">
+            <hr>            <h4 class="text-primary mb-3">
                 PD (Pupillary Distance)
-            </h5>
+            </h4>
 
             <div class="row">
 
@@ -161,17 +181,27 @@ Add Customer | OptiFlow ERP
                     {{ form.pd }}
                 </div>
 
-                <div class="col-md-3 mb-3">
+            </div>
+
+            <hr>
+
+            <h4 class="text-primary mb-3">
+                Billing Information
+            </h4>
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
                     {{ form.gst.label_tag }}
                     {{ form.gst }}
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     {{ form.discount.label_tag }}
                     {{ form.discount }}
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     {{ form.advance_paid.label_tag }}
                     {{ form.advance_paid }}
                 </div>
@@ -180,9 +210,9 @@ Add Customer | OptiFlow ERP
 
             <hr>
 
-            <h5 class="text-primary mb-3">
+            <h4 class="text-primary mb-3">
                 Order Information
-            </h5>
+            </h4>
 
             <div class="row">
 
@@ -203,25 +233,14 @@ Add Customer | OptiFlow ERP
                 {{ form.remarks }}
             </div>
 
-            <div class="d-grid gap-2">
+            <button class="btn btn-success btn-lg w-100">
+                💾 Save Customer
+            </button>
 
-                <button
-                    type="submit"
-                    class="btn btn-success btn-lg">
-
-                    💾 Save Customer
-
-                </button>
-
-                <a
-                    href="{% url 'home' %}"
-                    class="btn btn-secondary btn-lg">
-
-                    ⬅ Back to Dashboard
-
-                </a>
-
-            </div>
+            <a href="{% url 'home' %}"
+               class="btn btn-secondary btn-lg w-100 mt-3">
+                ⬅ Back to Dashboard
+            </a>
 
         </form>
 
